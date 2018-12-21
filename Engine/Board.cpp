@@ -15,21 +15,25 @@ void Board::DrawCell(Location & loc,Color c)
 
 void Board::DrawBorders()
 {
-	for (int lx = demension; lx < (width*demension); ++lx)
+	///TOP
+	for (int lx = demension; lx < (width*demension+2); ++lx)
 		for (int h = 0; h < 4; h++)
-		gfx.PutPixel(lx, demension+h, bColor);
+		gfx.PutPixel(lx-3, demension-h-1, bColor);
 	
-    for (int lx = demension; lx < (width*demension); ++lx)
+	///BOTTOM
+    for (int lx = demension; lx < (width*demension+3); ++lx)
 		for (int h = 0; h < 4; h++)
 		gfx.PutPixel(lx, demension*height+h, bColor);
 	
-	for (int ly = demension; ly < (height*demension); ++ly)
+	///LEFT
+	for (int ly = demension-4; ly < (height*demension); ++ly)
 		for (int h = 0; h < 4; h++)
-		gfx.PutPixel(demension+h, ly, bColor);
+		gfx.PutPixel(demension-h, ly+4, bColor);
 	
-	for (int ly = demension; ly < (height*demension); ++ly)
+	///RIGHT
+	for (int ly = demension; ly < (height*demension+4); ++ly)
 		for (int h = 0; h < 4; h++)
-		gfx.PutPixel(demension*width+h, ly, bColor); 
+		gfx.PutPixel(demension*width+h-1, ly-4, bColor); 
 }
 
 bool Board::IsSnekIn(Location & loc)
